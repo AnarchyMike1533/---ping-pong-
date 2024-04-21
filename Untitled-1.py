@@ -1,5 +1,4 @@
 
-
 from pygame import *
 from random import randint
 from time import time as timer
@@ -11,9 +10,9 @@ from time import time as timer
 
 
 class GameSprite(sprite.Sprite):
-    def __init__(self, player_image,player_speed, wight, height, size_x, size_y):
+    def __init__(self, player_image,player_x,player_y,player_speed, wight, height, size_x, size_y):
         super().__init__()
-        self.image = transform.scale(image.load(player_image),(wight,h))
+        self.image = transform.scale(image.load(player_image),(wight,height))
         self.speed = player_speed
         #Прямоугольник
         self.rect = self.image.get_rect()
@@ -55,12 +54,15 @@ game = True
 finish = False 
 clock = time.Clock()
 FPS = 55 
+
+ball = GameSprite('Tennis.png',100,100,4,50,50,50,50)
 while game:
     for e in event.get():
         if e.type == QUIT:
             game = False
         if finish != True :
             window.fill(back)
+            ball.reset()
         display.update()
         clock.tick(FPS)
         
